@@ -25,6 +25,7 @@ export const initialState: AppState = {
   outputPresetId: 'web-landscape',
   lastError: null,
   isReady: false,
+  lastExport: null,
 };
 
 export function createState(initial: AppState = initialState) {
@@ -84,6 +85,11 @@ export function createState(initial: AppState = initialState) {
     setReady(isReady: boolean) {
       const prev = { ...state };
       state = { ...state, isReady };
+      notify(prev);
+    },
+    setLastExport(lastExport: AppState['lastExport']) {
+      const prev = { ...state };
+      state = { ...state, lastExport };
       notify(prev);
     },
   };

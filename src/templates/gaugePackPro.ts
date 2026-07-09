@@ -1,6 +1,7 @@
 import type { EChartsOption } from 'echarts';
 import type { Template, TemplateContext } from '../core/types';
 import { templateRegistry } from '../core/registry';
+import { createGaugeData } from '../data/demoData';
 
 function buildOption(ctx: TemplateContext): EChartsOption {
   const rows = ctx.data.rows.slice(0, 4);
@@ -45,9 +46,11 @@ export const gaugePackPro: Template = {
   id: 'gauge-pack-pro',
   name: 'Gauge Pack Pro',
   description: 'Hasta 4 gauges de rendimiento con estilo premium.',
-  category: 'gauge',
+  category: 'Experimental',
   buildOption,
   suggestedDimensions: ['name', 'value'],
+  defaultData: createGaugeData,
+  exportCapabilities: ['png', 'svg', 'html', 'embed', 'json'],
 };
 
 templateRegistry.register(gaugePackPro);

@@ -3,7 +3,6 @@ import type { ECharts, EChartsOption } from 'echarts';
 import type { StateStore } from './state';
 import { templateRegistry, themeRegistry, presetRegistry } from './registry';
 import { buildTheme } from '../themes/themeBuilder';
-import { createDemoDataSet } from '../data/demoData';
 
 export class Runtime {
   chart: ECharts | null = null;
@@ -47,7 +46,7 @@ export class Runtime {
         return;
       }
 
-      const data = state.data && state.data.rows.length ? state.data : createDemoDataSet(template.id);
+      const data = state.data && state.data.rows.length ? state.data : template.defaultData();
       const echartsTheme = buildTheme(theme, state.branding);
 
       const option = template.buildOption({

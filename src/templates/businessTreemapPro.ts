@@ -1,6 +1,7 @@
 import type { EChartsOption } from 'echarts';
 import type { Template, TemplateContext } from '../core/types';
 import { templateRegistry } from '../core/registry';
+import { createTreemapData } from '../data/demoData';
 
 function buildOption(ctx: TemplateContext): EChartsOption {
   return {
@@ -30,9 +31,11 @@ export const businessTreemapPro: Template = {
   id: 'business-treemap-pro',
   name: 'Business Treemap Pro',
   description: 'Distribución proporcional de negocio con drill-down visual.',
-  category: 'business',
+  category: 'Business',
   buildOption,
   suggestedDimensions: ['name', 'value'],
+  defaultData: createTreemapData,
+  exportCapabilities: ['png', 'svg', 'html', 'embed', 'json'],
 };
 
 templateRegistry.register(businessTreemapPro);

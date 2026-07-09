@@ -1,6 +1,7 @@
 import type { EChartsOption } from 'echarts';
 import type { Template, TemplateContext } from '../core/types';
 import { templateRegistry } from '../core/registry';
+import { createDecisionTreeData } from '../data/demoData';
 
 function buildOption(ctx: TemplateContext): EChartsOption {
   return {
@@ -41,9 +42,11 @@ export const decisionTreePro: Template = {
   id: 'decision-tree-pro',
   name: 'Decision Tree Pro',
   description: 'Jerarquía de decisiones estratégicas en árbol interactivo.',
-  category: 'decision',
+  category: 'Strategy',
   buildOption,
   suggestedDimensions: ['name', 'value', 'children'],
+  defaultData: createDecisionTreeData,
+  exportCapabilities: ['png', 'svg', 'html', 'embed', 'json'],
 };
 
 templateRegistry.register(decisionTreePro);

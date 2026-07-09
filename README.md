@@ -1,6 +1,6 @@
-# Escaparates Pro · Data Storytelling MVP
+# Escaparates Pro · Data Storytelling Studio
 
-Módulo standalone de visualización de datos para Escaparates Pro. Renderiza gráficos profesionales con Apache ECharts, TypeScript y Vite. Sin frameworks de UI, sin backend.
+Módulo standalone de visualización de datos premium para Escaparates Pro. Renderiza gráficos profesionales con Apache ECharts, TypeScript y Vite. Sin frameworks de UI, sin backend.
 
 ## Stack
 
@@ -33,12 +33,28 @@ npm run build
 npm run preview
 ```
 
-## Templates incluidos
+## Templates incluidos (10)
+
+### Business
+
+- Business Treemap Pro
+- KPI Dashboard Pro
+- Funnel Story Pro
+- Bubble Matrix Pro
+
+### Marketing
+
+- Brand Sunburst Pro
+- Timeline Campaign Pro
+- Heatmap Calendar Pro
+
+### Strategy
 
 - Decision Tree Pro
-- Business Treemap Pro
-- Brand Sunburst Pro
-- KPI Dashboard Pro
+- Radar Benchmark Pro
+
+### Experimental
+
 - Gauge Pack Pro
 
 ## Themes
@@ -85,12 +101,17 @@ npm run preview
 
 El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run build` en cada push y PR.
 
-## Pendientes
+## Roadmap / Próximos packs sugeridos
 
-- Code-splitting de ECharts para reducir bundle
-- Tests unitarios
-- Restricción de `targetOrigin` en producción
-- PNG sequence (no implementado)
+- **Pack 02:** Geo map, network graph, sankey, candlestick, word cloud.
+- **Pack 03:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
+- **Integración:** postMessage restringido, conector con `escaparates-pro`.
+
+## Limitaciones
+
+- WebM depende del soporte nativo del navegador.
+- Bundle de ECharts completo (~1.1 MB). Code-splitting pendiente.
+- PNG sequence no implementado.
 
 ## Licencia
 
