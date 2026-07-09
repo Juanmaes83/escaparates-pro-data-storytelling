@@ -35,21 +35,21 @@ export class Runtime {
   render() {
     if (!this.chart || this.isRendering) return;
     this.isRendering = true;
-    const state = this.store.get();
-
-    const template = state.templateId ? templateRegistry.get(state.templateId) : null;
-    const theme = themeRegistry.get(state.themeId);
-    const preset = presetRegistry.get(state.outputPresetId);
-
-    if (!template || !theme || !preset) {
-      this.chart.clear();
-      return;
-    }
-
-    const data = state.data && state.data.rows.length ? state.data : createDemoDataSet(template.id);
-    const echartsTheme = buildTheme(theme, state.branding);
 
     try {
+      const state = this.store.get();
+      const template = state.templateId ? templateRegistry.get(state.templateId) : null;
+      const theme = themeRegistry.get(state.themeId);
+      const preset = presetRegistry.get(state.outputPresetId);
+
+      if (!template || !theme || !preset) {
+        this.chart.clear();
+        return;
+      }
+
+      const data = state.data && state.data.rows.length ? state.data : createDemoDataSet(template.id);
+      const echartsTheme = buildTheme(theme, state.branding);
+
       const option = template.buildOption({
         data,
         theme,
