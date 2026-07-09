@@ -295,6 +295,182 @@ export function createThemeRiverTrendData(): DataSet {
   };
 }
 
+export function createExecutiveScorecardData(): DataSet {
+  return {
+    id: 'executive-scorecard-demo',
+    title: 'Executive Scorecard Pro',
+    rows: [
+      { name: 'Ingresos', value: 8.4, group: 'M€', meta: { target: 8.0, prev: 7.6 } },
+      { name: 'Margen', value: 24.5, group: '%', meta: { target: 23.0, prev: 22.1 } },
+      { name: 'NPS', value: 72, group: 'pts', meta: { target: 70, prev: 68 } },
+      { name: 'Retención', value: 91, group: '%', meta: { target: 90, prev: 88 } },
+      { name: 'CAC', value: 42, group: '€', meta: { target: 45, prev: 48 } },
+      { name: 'LTV/CAC', value: 3.8, group: 'ratio', meta: { target: 3.5, prev: 3.4 } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCampaignAttributionData(): DataSet {
+  return {
+    id: 'campaign-attribution-demo',
+    title: 'Campaign Attribution Pro',
+    rows: [
+      { name: 'Paid Social', value: 42000, group: 'Leads' },
+      { name: 'Paid Search', value: 58000, group: 'Leads' },
+      { name: 'Email', value: 24000, group: 'Leads' },
+      { name: 'Organic', value: 31000, group: 'Leads' },
+      { name: 'Paid Social', value: 8.4, group: 'ROAS' },
+      { name: 'Paid Search', value: 12.2, group: 'ROAS' },
+      { name: 'Email', value: 18.5, group: 'ROAS' },
+      { name: 'Organic', value: 0, group: 'ROAS' },
+      { name: 'Paid Social', value: 125000, group: 'Inversión' },
+      { name: 'Paid Search', value: 180000, group: 'Inversión' },
+      { name: 'Email', value: 35000, group: 'Inversión' },
+      { name: 'Organic', value: 0, group: 'Inversión' },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createCustomerJourneyData(): DataSet {
+  return {
+    id: 'customer-journey-demo',
+    title: 'Customer Journey Map Pro',
+    rows: [
+      { name: 'Awareness', value: 92, group: 'Satisfacción', meta: { pain: 'Baja reach orgánica' } },
+      { name: 'Consideration', value: 74, group: 'Satisfacción', meta: { pain: 'Info dispersa' } },
+      { name: 'Purchase', value: 81, group: 'Satisfacción', meta: { pain: 'Checkout lento' } },
+      { name: 'Onboarding', value: 68, group: 'Satisfacción', meta: { pain: 'Falta de guía' } },
+      { name: 'Retention', value: 85, group: 'Satisfacción', meta: { pain: 'Soporte saturado' } },
+      { name: 'Advocacy', value: 78, group: 'Satisfacción', meta: { pain: 'Programa referidos débil' } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createMarketPositioningData(): DataSet {
+  return {
+    id: 'market-positioning-demo',
+    title: 'Market Positioning Map Pro',
+    rows: [
+      { name: 'Nuestra Marca', value: 82, group: '85', meta: { x: 75, y: 82, size: 40 } },
+      { name: 'Competidor A', value: 65, group: '60', meta: { x: 55, y: 65, size: 35 } },
+      { name: 'Competidor B', value: 78, group: '45', meta: { x: 80, y: 78, size: 30 } },
+      { name: 'Competidor C', value: 50, group: '30', meta: { x: 35, y: 50, size: 25 } },
+      { name: 'Entrante D', value: 60, group: '70', meta: { x: 60, y: 60, size: 20 } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createPortfolioRiskData(): DataSet {
+  return {
+    id: 'portfolio-risk-demo',
+    title: 'Portfolio Risk Matrix Pro',
+    rows: [
+      { name: 'Expansión LATAM', value: 88, group: 'Riesgo Medio', meta: { retorno: 88, riesgo: 45, inversión: 500 } },
+      { name: 'Nuevo SKU', value: 72, group: 'Riesgo Bajo', meta: { retorno: 72, riesgo: 25, inversión: 200 } },
+      { name: 'Adquisición Tech', value: 95, group: 'Riesgo Alto', meta: { retorno: 95, riesgo: 78, inversión: 1200 } },
+      { name: 'Rebranding', value: 65, group: 'Riesgo Medio', meta: { retorno: 65, riesgo: 55, inversión: 350 } },
+      { name: 'App móvil', value: 80, group: 'Riesgo Bajo', meta: { retorno: 80, riesgo: 35, inversión: 400 } },
+      { name: 'Marketplace', value: 60, group: 'Riesgo Alto', meta: { retorno: 60, riesgo: 70, inversión: 600 } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createSalesTerritoryData(): DataSet {
+  return {
+    id: 'sales-territory-demo',
+    title: 'Sales Territory Ranking Pro',
+    rows: [
+      { name: 'Madrid', value: 1240, group: 'Ventas' },
+      { name: 'Barcelona', value: 980, group: 'Ventas' },
+      { name: 'Valencia', value: 640, group: 'Ventas' },
+      { name: 'Sevilla', value: 520, group: 'Ventas' },
+      { name: 'Bilbao', value: 410, group: 'Ventas' },
+      { name: 'Málaga', value: 380, group: 'Ventas' },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createProductLifecycleData(): DataSet {
+  return {
+    id: 'product-lifecycle-demo',
+    title: 'Product Lifecycle Pro',
+    rows: [
+      { name: 'Producto A', value: 85, group: 'Crecimiento' },
+      { name: 'Producto B', value: 62, group: 'Madurez' },
+      { name: 'Producto C', value: 35, group: 'Declive' },
+      { name: 'Producto D', value: 45, group: 'Lanzamiento' },
+      { name: 'Producto E', value: 78, group: 'Crecimiento' },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCohortRetentionData(): DataSet {
+  const cohorts = ['Ene', 'Feb', 'Mar', 'Abr', 'May'];
+  const months = ['M0', 'M1', 'M2', 'M3', 'M4'];
+  const rows: DataPoint[] = [];
+  cohorts.forEach((cohort, c) => {
+    months.forEach((month, m) => {
+      const retention = Math.max(20, 100 - m * 18 - c * 6 + Math.random() * 8);
+      rows.push({
+        name: cohort,
+        value: Math.round(retention),
+        group: month,
+      });
+    });
+  });
+  return {
+    id: 'cohort-retention-demo',
+    title: 'Cohort Retention Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createScenarioComparisonData(): DataSet {
+  return {
+    id: 'scenario-comparison-demo',
+    title: 'Scenario Comparison Pro',
+    rows: [
+      { name: 'Q1', value: 1200, group: 'Conservador' },
+      { name: 'Q2', value: 1350, group: 'Conservador' },
+      { name: 'Q3', value: 1480, group: 'Conservador' },
+      { name: 'Q4', value: 1600, group: 'Conservador' },
+      { name: 'Q1', value: 1250, group: 'Base' },
+      { name: 'Q2', value: 1480, group: 'Base' },
+      { name: 'Q3', value: 1700, group: 'Base' },
+      { name: 'Q4', value: 1950, group: 'Base' },
+      { name: 'Q1', value: 1300, group: 'Aggresivo' },
+      { name: 'Q2', value: 1620, group: 'Aggresivo' },
+      { name: 'Q3', value: 1950, group: 'Aggresivo' },
+      { name: 'Q4', value: 2350, group: 'Aggresivo' },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createStrategicRoadmapData(): DataSet {
+  return {
+    id: 'strategic-roadmap-demo',
+    title: 'Strategic Roadmap Pro',
+    rows: [
+      { name: 'Lanzamiento App', value: 90, group: 'Q1', meta: { start: 1, duration: 2, impacto: 90 } },
+      { name: 'Expansión B2B', value: 75, group: 'Q2', meta: { start: 2, duration: 3, impacto: 75 } },
+      { name: 'Rebranding', value: 60, group: 'Q2', meta: { start: 2, duration: 2, impacto: 60 } },
+      { name: 'Nuevo Marketplace', value: 85, group: 'Q3', meta: { start: 4, duration: 3, impacto: 85 } },
+      { name: 'Loyalty Program', value: 70, group: 'Q4', meta: { start: 6, duration: 2, impacto: 70 } },
+      { name: 'Integración CRM', value: 55, group: 'Q1', meta: { start: 1, duration: 2, impacto: 55 } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
 export function createDemoDataSet(templateId: string): DataSet {
   switch (templateId) {
     case 'decision-tree-pro':
@@ -327,6 +503,26 @@ export function createDemoDataSet(templateId: string): DataSet {
       return createWaterfallProfitBridgeData();
     case 'theme-river-trend-pro':
       return createThemeRiverTrendData();
+    case 'executive-scorecard-pro':
+      return createExecutiveScorecardData();
+    case 'campaign-attribution-pro':
+      return createCampaignAttributionData();
+    case 'customer-journey-map-pro':
+      return createCustomerJourneyData();
+    case 'market-positioning-map-pro':
+      return createMarketPositioningData();
+    case 'portfolio-risk-matrix-pro':
+      return createPortfolioRiskData();
+    case 'sales-territory-ranking-pro':
+      return createSalesTerritoryData();
+    case 'product-lifecycle-pro':
+      return createProductLifecycleData();
+    case 'cohort-retention-pro':
+      return createCohortRetentionData();
+    case 'scenario-comparison-pro':
+      return createScenarioComparisonData();
+    case 'strategic-roadmap-pro':
+      return createStrategicRoadmapData();
     default:
       return createKpiData();
   }

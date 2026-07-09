@@ -28,6 +28,16 @@ import './templates/networkEcosystemPro';
 import './templates/parallelBenchmarkPro';
 import './templates/waterfallProfitBridgePro';
 import './templates/themeRiverTrendPro';
+import './templates/executiveScorecardPro';
+import './templates/campaignAttributionPro';
+import './templates/customerJourneyMapPro';
+import './templates/marketPositioningMapPro';
+import './templates/portfolioRiskMatrixPro';
+import './templates/salesTerritoryRankingPro';
+import './templates/productLifecyclePro';
+import './templates/cohortRetentionPro';
+import './templates/scenarioComparisonPro';
+import './templates/strategicRoadmapPro';
 
 const WEBM_SUPPORTED =
   typeof HTMLCanvasElement !== 'undefined' &&
@@ -202,10 +212,20 @@ function bindUI(store: ReturnType<typeof createState>, runtime: Runtime) {
     const group = document.createElement('div');
     group.className = 'ep-ds-template-group';
 
-    const heading = document.createElement('div');
+    const heading = document.createElement('button');
     heading.className = 'ep-ds-template-group-title';
-    heading.textContent = category;
+    heading.type = 'button';
+    heading.innerHTML = `<span>${escapeHtml(category)}</span><span class="ep-ds-toggle">−</span>`;
+    heading.addEventListener('click', () => {
+      group.classList.toggle('collapsed');
+      const toggle = heading.querySelector('.ep-ds-toggle');
+      if (toggle) toggle.textContent = group.classList.contains('collapsed') ? '+' : '−';
+    });
     group.appendChild(heading);
+
+    const itemsContainer = document.createElement('div');
+    itemsContainer.className = 'ep-ds-template-items';
+    group.appendChild(itemsContainer);
 
     categories[category].forEach((t) => {
       const el = document.createElement('button');
@@ -217,7 +237,7 @@ function bindUI(store: ReturnType<typeof createState>, runtime: Runtime) {
         <span class="ep-ds-template-desc">${escapeHtml(t.description)}</span>
       `;
       el.addEventListener('click', () => store.setTemplate(t.id));
-      group.appendChild(el);
+      itemsContainer.appendChild(el);
     });
 
     templateList.appendChild(group);

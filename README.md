@@ -33,7 +33,9 @@ npm run build
 npm run preview
 ```
 
-## Templates incluidos (15)
+## Templates incluidos (25)
+
+El panel de templates organiza las 25 opciones en categorías colapsables para facilitar la navegación.
 
 ### Pack 01 — Fundamentos premium
 
@@ -74,6 +76,27 @@ npm run preview
 #### Marketing
 
 - Theme River Trend Pro
+
+### Pack 03 — Narrativa ejecutiva y toma de decisiones
+
+#### Business
+
+- Executive Scorecard Pro
+- Portfolio Risk Matrix Pro
+- Sales Territory Ranking Pro
+- Cohort Retention Pro
+
+#### Marketing
+
+- Campaign Attribution Pro
+- Customer Journey Map Pro
+- Product Lifecycle Pro
+
+#### Strategy
+
+- Market Positioning Map Pro
+- Scenario Comparison Pro
+- Strategic Roadmap Pro
 
 ## Themes
 
@@ -121,16 +144,16 @@ El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run build` en cad
 
 ## Roadmap / Próximos packs sugeridos
 
-- **Pack 03:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
-- **Pack 04:** Geo map, ECharts GL (futuro), gráficos 3D selectivos.
+- **Pack 04:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
+- **Pack 05:** Geo map, ECharts GL (futuro), gráficos 3D selectivos.
 - **Integración:** postMessage restringido, conector con `escaparates-pro`.
 
 ## Limitaciones
 
 - WebM depende del soporte nativo del navegador.
-- Bundle de ECharts completo (~1.15 MB). Code-splitting pendiente.
+- Bundle de ECharts completo (~1.18 MB). Code-splitting pendiente.
 - PNG sequence no implementado.
-- Algunos templates complejos (graph, sankey) pueden requerir ajustes de layout en resoluciones muy pequeñas.
+- Algunos templates complejos (graph, sankey, gantt, heatmap) pueden requerir ajustes de layout en resoluciones muy pequeñas.
 
 ## Licencia
 

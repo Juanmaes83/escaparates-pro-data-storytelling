@@ -221,13 +221,33 @@ html, body, #app {
 }
 
 .ep-ds-template-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.35rem 0.25rem;
+  margin-bottom: 0.4rem;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ep-accent);
-  margin-bottom: 0.5rem;
-  padding-left: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.ep-ds-template-group-title:focus {
+  outline: none;
+}
+
+.ep-ds-toggle {
+  font-size: 0.85rem;
+  color: var(--ep-text-muted);
+}
+
+.ep-ds-template-group.collapsed .ep-ds-template-items {
+  display: none;
 }
 
 .ep-ds-template-item {
