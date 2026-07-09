@@ -33,9 +33,9 @@ npm run build
 npm run preview
 ```
 
-## Templates incluidos (35)
+## Templates incluidos (45)
 
-El panel de templates organiza las 35 opciones en categorías colapsables para facilitar la navegación.
+El panel de templates organiza las 45 opciones en categorías colapsables para facilitar la navegación.
 
 ### Pack 01 — Fundamentos premium
 
@@ -122,6 +122,27 @@ El panel de templates organiza las 35 opciones en categorías colapsables para f
 
 - Polar Bar Pro
 
+### Pack 05 — Visualizaciones avanzadas inspiradas en ejemplos ECharts
+
+#### Business
+
+- Disk Treemap Pro
+- Sankey Gradient Pro
+- Sankey Right Align Pro
+- Treemap Obama Pro
+
+#### Marketing
+
+- Sunburst Drink Pro
+- Sunburst VisualMap Pro
+- Pictorial Hill Pro
+- Custom Calendar Icon Pro
+
+#### Experimental
+
+- Custom Hexbin Pro
+- Custom Wind Pro
+
 ## Themes
 
 - Luxury Dark
@@ -168,16 +189,16 @@ El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run build` en cad
 
 ## Roadmap / Próximos packs sugeridos
 
-- **Pack 05:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
-- **Pack 06:** Geo map, ECharts GL (futuro), gráficos 3D selectivos.
+- **Pack 06:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
+- **Pack 07:** Geo map (SVG/GeoJSON), ECharts GL (futuro), gráficos 3D selectivos.
 - **Integración:** postMessage restringido, conector con `escaparates-pro`.
 
 ## Limitaciones
 
 - WebM depende del soporte nativo del navegador.
-- Bundle de ECharts completo (~1.20 MB). Code-splitting pendiente.
+- Bundle de ECharts completo (~1.22 MB). Code-splitting pendiente.
 - PNG sequence no implementado.
-- Algunos templates complejos (graph, sankey, gantt, heatmap, boxplot, candlestick, tree radial, polar) pueden requerir ajustes de layout en resoluciones muy pequeñas.
+- Algunos templates complejos (graph, sankey, gantt, heatmap, boxplot, candlestick, tree radial, polar, hexbin, wind, calendario iconos) pueden requerir ajustes de layout en resoluciones muy pequeñas.
 
 ## Licencia
 

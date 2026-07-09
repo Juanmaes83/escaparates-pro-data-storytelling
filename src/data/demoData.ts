@@ -634,6 +634,206 @@ export function createPolarBarData(): DataSet {
   };
 }
 
+export function createDiskTreemapData(): DataSet {
+  const build = (name: string, value: number, children?: DataPoint[]): DataPoint => ({
+    name,
+    value,
+    children,
+  });
+  return {
+    id: 'disk-treemap-demo',
+    title: 'Disk Treemap Pro',
+    rows: [
+      build('Sistema', 500, [
+        build('Usuarios', 300, [build('Documentos', 180), build('Imágenes', 120)]),
+        build('Aplicaciones', 150, [build('Binarios', 90), build('Logs', 60)]),
+        build('Respaldo', 50),
+      ]),
+      build('Proyectos', 350, [
+        build('Web', 200, [build('Frontend', 120), build('Backend', 80)]),
+        build('Móvil', 100),
+        build('Datos', 50),
+      ]),
+      build('Marketing', 150, [build('Assets', 90), build('Campañas', 60)]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createSunburstDrinkData(): DataSet {
+  const build = (name: string, value?: number, children?: DataPoint[]): DataPoint => ({
+    name,
+    value: value ?? 1,
+    children,
+  });
+  return {
+    id: 'sunburst-drink-demo',
+    title: 'Sunburst Drink Pro',
+    rows: [
+      build('Flora', undefined, [
+        build('Black Tea'),
+        build('Floral', undefined, [build('Chamomile'), build('Rose'), build('Jasmine')]),
+      ]),
+      build('Fruity', undefined, [
+        build('Berry', undefined, [build('Strawberry'), build('Raspberry')]),
+        build('Citrus', undefined, [build('Lemon'), build('Orange')]),
+      ]),
+      build('Spiced', undefined, [build('Cinnamon'), build('Vanilla'), build('Ginger')]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createSunburstVisualMapData(): DataSet {
+  const build = (name: string, value: number, children?: DataPoint[]): DataPoint => ({
+    name,
+    value,
+    children,
+  });
+  return {
+    id: 'sunburst-visualmap-demo',
+    title: 'Sunburst VisualMap Pro',
+    rows: [
+      build('Grandpa', 0, [
+        build('Uncle Leo', 0, [build('Cousin Jack', 2), build('Cousin Mary', 5), build('Cousin Ben', 4)]),
+        build('Aunt Jane', 0, [build('Cousin Kate', 4)]),
+        build('Father', 10, [build('Me', 5), build('Brother Peter', 1)]),
+      ]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createSankeyGradientData(): DataSet {
+  const nodes = ['Web', 'App', 'Retail', 'Online', 'Offline', 'Leads', 'Sales'];
+  const rows: DataPoint[] = nodes.map((name) => ({ name, value: 0, group: 'node' }));
+  rows.push(
+    { name: 'link1', value: 120, group: 'link', meta: { source: 'Web', target: 'Online' } },
+    { name: 'link2', value: 80, group: 'link', meta: { source: 'App', target: 'Online' } },
+    { name: 'link3', value: 60, group: 'link', meta: { source: 'Retail', target: 'Offline' } },
+    { name: 'link4', value: 90, group: 'link', meta: { source: 'Online', target: 'Leads' } },
+    { name: 'link5', value: 50, group: 'link', meta: { source: 'Offline', target: 'Leads' } },
+    { name: 'link6', value: 70, group: 'link', meta: { source: 'Leads', target: 'Sales' } }
+  );
+  return {
+    id: 'sankey-gradient-demo',
+    title: 'Sankey Gradient Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createSankeyRightAlignData(): DataSet {
+  const nodes = ['Tráfico', 'Paid', 'Social', 'Leads', 'Oportunidades', 'Ventas'];
+  const rows: DataPoint[] = nodes.map((name) => ({ name, value: 0, group: 'node' }));
+  rows.push(
+    { name: 'l1', value: 200, group: 'link', meta: { source: 'Tráfico', target: 'Leads' } },
+    { name: 'l2', value: 150, group: 'link', meta: { source: 'Paid', target: 'Leads' } },
+    { name: 'l3', value: 100, group: 'link', meta: { source: 'Social', target: 'Leads' } },
+    { name: 'l4', value: 280, group: 'link', meta: { source: 'Leads', target: 'Oportunidades' } },
+    { name: 'l5', value: 120, group: 'link', meta: { source: 'Oportunidades', target: 'Ventas' } }
+  );
+  return {
+    id: 'sankey-right-align-demo',
+    title: 'Sankey Right Align Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createPictorialHillData(): DataSet {
+  return {
+    id: 'pictorial-hill-demo',
+    title: 'Pictorial Hill Pro',
+    rows: [
+      { name: 'Qomolangma', value: 8848 },
+      { name: 'K2', value: 8611 },
+      { name: 'Kangchenjunga', value: 8586 },
+      { name: 'Lhotse', value: 8516 },
+      { name: 'Makalu', value: 8485 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCustomCalendarIconData(): DataSet {
+  const rows: DataPoint[] = [];
+  for (let day = 1; day <= 31; day++) {
+    const count = Math.floor(Math.random() * 4);
+    const icons: number[] = [];
+    for (let i = 0; i < count; i++) icons.push(Math.floor(Math.random() * 3));
+    rows.push({
+      name: `2017-03-${String(day).padStart(2, '0')}`,
+      value: icons.length,
+      meta: { icons },
+    });
+  }
+  return {
+    id: 'custom-calendar-icon-demo',
+    title: 'Custom Calendar Icon Pro',
+    rows,
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCustomHexbinData(): DataSet {
+  const rows: DataPoint[] = [];
+  for (let i = 0; i < 300; i++) {
+    rows.push({
+      name: `p${i}`,
+      value: 0,
+      meta: { x: Math.random() * 100, y: Math.random() * 100 },
+    });
+  }
+  return {
+    id: 'custom-hexbin-demo',
+    title: 'Custom Hexbin Pro',
+    rows,
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createTreemapObamaData(): DataSet {
+  const build = (name: string, values: number[], children?: DataPoint[]): DataPoint => ({
+    name,
+    value: values[0],
+    meta: { values },
+    children,
+  });
+  return {
+    id: 'treemap-obama-demo',
+    title: 'Treemap Obama Pro',
+    rows: [
+      build('Defensa', [700, 5], [build('Ejército', [400, 3]), build('Marina', [200, 8]), build('Aire', [100, -2])]),
+      build('Salud', [900, 12], [build('Medicare', [500, 6]), build('Medicaid', [400, 15])]),
+      build('Educación', [450, 4], [build('Primaria', [250, 2]), build('Secundaria', [200, 6])]),
+      build('Infraestructura', [300, -3]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCustomWindData(): DataSet {
+  const rows: DataPoint[] = [];
+  for (let x = 10; x <= 90; x += 15) {
+    for (let y = 10; y <= 90; y += 15) {
+      const angle = Math.random() * Math.PI * 2;
+      const mag = 2 + Math.random() * 8;
+      rows.push({
+        name: `v${x}-${y}`,
+        value: 0,
+        meta: { x, y, vx: Math.cos(angle) * mag, vy: Math.sin(angle) * mag, mag },
+      });
+    }
+  }
+  return {
+    id: 'custom-wind-demo',
+    title: 'Custom Wind Pro',
+    rows,
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
 export function createDemoDataSet(templateId: string): DataSet {
   switch (templateId) {
     case 'decision-tree-pro':
@@ -706,6 +906,26 @@ export function createDemoDataSet(templateId: string): DataSet {
       return createStepForecastData();
     case 'polar-bar-pro':
       return createPolarBarData();
+    case 'disk-treemap-pro':
+      return createDiskTreemapData();
+    case 'sunburst-drink-pro':
+      return createSunburstDrinkData();
+    case 'sunburst-visualmap-pro':
+      return createSunburstVisualMapData();
+    case 'sankey-gradient-pro':
+      return createSankeyGradientData();
+    case 'sankey-right-align-pro':
+      return createSankeyRightAlignData();
+    case 'pictorial-hill-pro':
+      return createPictorialHillData();
+    case 'custom-calendar-icon-pro':
+      return createCustomCalendarIconData();
+    case 'custom-hexbin-pro':
+      return createCustomHexbinData();
+    case 'treemap-obama-pro':
+      return createTreemapObamaData();
+    case 'custom-wind-pro':
+      return createCustomWindData();
     default:
       return createKpiData();
   }
