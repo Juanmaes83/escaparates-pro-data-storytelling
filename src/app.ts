@@ -48,6 +48,16 @@ import './templates/pictorialBarPro';
 import './templates/radialDecisionTreePro';
 import './templates/stepForecastPro';
 import './templates/polarBarPro';
+import './templates/diskTreemapPro';
+import './templates/sunburstDrinkPro';
+import './templates/sunburstVisualMapPro';
+import './templates/sankeyGradientPro';
+import './templates/sankeyRightAlignPro';
+import './templates/pictorialHillPro';
+import './templates/customCalendarIconPro';
+import './templates/customHexbinPro';
+import './templates/treemapObamaPro';
+import './templates/customWindPro';
 
 const WEBM_SUPPORTED =
   typeof HTMLCanvasElement !== 'undefined' &&
