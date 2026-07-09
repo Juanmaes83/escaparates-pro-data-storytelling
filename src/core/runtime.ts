@@ -9,6 +9,7 @@ export class Runtime {
   chart: ECharts | null = null;
   private store: StateStore;
   private unsubscribe: (() => void) | null = null;
+  private isRendering = false;
 
   constructor(store: StateStore) {
     this.store = store;
@@ -32,22 +33,23 @@ export class Runtime {
   }
 
   render() {
-    if (!this.chart) return;
-    const state = this.store.get();
-
-    const template = state.templateId ? templateRegistry.get(state.templateId) : null;
-    const theme = themeRegistry.get(state.themeId);
-    const preset = presetRegistry.get(state.outputPresetId);
-
-    if (!template || !theme || !preset) {
-      this.chart.clear();
-      return;
-    }
-
-    const data = state.data && state.data.rows.length ? state.data : createDemoDataSet(template.id);
-    const echartsTheme = buildTheme(theme, state.branding);
+    if (!this.chart || this.isRendering) return;
+    this.isRendering = true;
 
     try {
+      const state = this.store.get();
+      const template = state.templateId ? templateRegistry.get(state.templateId) : null;
+      const theme = themeRegistry.get(state.themeId);
+      const preset = presetRegistry.get(state.outputPresetId);
+
+      if (!template || !theme || !preset) {
+        this.chart.clear();
+        return;
+      }
+
+      const data = state.data && state.data.rows.length ? state.data : createDemoDataSet(template.id);
+      const echartsTheme = buildTheme(theme, state.branding);
+
       const option = template.buildOption({
         data,
         theme,
@@ -81,6 +83,8 @@ export class Runtime {
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       this.store.setError(message);
+    } finally {
+      this.isRendering = false;
     }
   }
 
