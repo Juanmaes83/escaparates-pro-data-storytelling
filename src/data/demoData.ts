@@ -202,6 +202,99 @@ export function createHeatmapCalendarData(): DataSet {
   };
 }
 
+export function createSankeyFlowData(): DataSet {
+  return {
+    id: 'sankey-flow-demo',
+    title: 'Sankey Flow Story Pro',
+    rows: [
+      { name: 'Tráfico Orgánico', value: 45000, group: 'source' },
+      { name: 'Paid Media', value: 38000, group: 'source' },
+      { name: 'Social', value: 27000, group: 'source' },
+      { name: 'Email', value: 15000, group: 'source' },
+      { name: 'Visitantes', value: 125000, group: 'node' },
+      { name: 'Leads', value: 42000, group: 'node' },
+      { name: 'Oportunidades', value: 12800, group: 'node' },
+      { name: 'Propuestas', value: 5400, group: 'node' },
+      { name: 'Ventas Cerradas', value: 2180, group: 'node' },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createNetworkEcosystemData(): DataSet {
+  return {
+    id: 'network-ecosystem-demo',
+    title: 'Network Ecosystem Pro',
+    rows: [
+      { name: 'Marca Principal', value: 100, group: 'core', meta: { category: 0 } },
+      { name: 'Retail Partners', value: 70, group: 'partner', meta: { category: 1 } },
+      { name: 'Marketplaces', value: 60, group: 'channel', meta: { category: 2 } },
+      { name: 'Influencers', value: 45, group: 'media', meta: { category: 3 } },
+      { name: 'Clientes VIP', value: 80, group: 'client', meta: { category: 4 } },
+      { name: 'Competidor A', value: 55, group: 'competitor', meta: { category: 5 } },
+      { name: 'Competidor B', value: 40, group: 'competitor', meta: { category: 5 } },
+      { name: 'Tecnología CRM', value: 50, group: 'tech', meta: { category: 6 } },
+      { name: 'Analytics Stack', value: 35, group: 'tech', meta: { category: 6 } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createParallelBenchmarkData(): DataSet {
+  return {
+    id: 'parallel-benchmark-demo',
+    title: 'Parallel Benchmark Pro',
+    rows: [
+      { name: 'Alcance', value: 85, group: 'Marca A', meta: { coste: 70, conversion: 65, riesgo: 30, roi: 80, madurez: 90 } },
+      { name: 'Alcance', value: 60, group: 'Competidor 1', meta: { coste: 50, conversion: 70, riesgo: 45, roi: 65, madurez: 70 } },
+      { name: 'Alcance', value: 75, group: 'Nuevo Entrante', meta: { coste: 85, conversion: 55, riesgo: 60, roi: 75, madurez: 40 } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createWaterfallProfitBridgeData(): DataSet {
+  return {
+    id: 'waterfall-profit-bridge-demo',
+    title: 'Waterfall Profit Bridge Pro',
+    rows: [
+      { name: 'Ingresos Iniciales', value: 1200 },
+      { name: '+ Nuevos Clientes', value: 340 },
+      { name: '+ Upsell', value: 180 },
+      { name: '- Costes Operativos', value: -420 },
+      { name: '- Marketing', value: -210 },
+      { name: '- Devoluciones', value: -90 },
+      { name: '= Margen Final', value: 1000 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createThemeRiverTrendData(): DataSet {
+  const categories = ['Paid Media', 'Organic', 'Social', 'Email', 'Direct'];
+  const weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'];
+  const baseValues: Record<string, number> = { 'Paid Media': 45, Organic: 30, Social: 25, Email: 20, Direct: 15 };
+
+  const rows: DataPoint[] = [];
+  weeks.forEach((week, w) => {
+    categories.forEach((cat) => {
+      const trend = Math.sin((w + categories.indexOf(cat)) * 0.6) * 10;
+      rows.push({
+        name: cat,
+        value: Math.round(Math.max(5, baseValues[cat] + trend + Math.random() * 8)),
+        group: week,
+      });
+    });
+  });
+
+  return {
+    id: 'theme-river-trend-demo',
+    title: 'Theme River Trend Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
 export function createDemoDataSet(templateId: string): DataSet {
   switch (templateId) {
     case 'decision-tree-pro':
@@ -224,6 +317,16 @@ export function createDemoDataSet(templateId: string): DataSet {
       return createBubbleMatrixData();
     case 'heatmap-calendar-pro':
       return createHeatmapCalendarData();
+    case 'sankey-flow-story-pro':
+      return createSankeyFlowData();
+    case 'network-ecosystem-pro':
+      return createNetworkEcosystemData();
+    case 'parallel-benchmark-pro':
+      return createParallelBenchmarkData();
+    case 'waterfall-profit-bridge-pro':
+      return createWaterfallProfitBridgeData();
+    case 'theme-river-trend-pro':
+      return createThemeRiverTrendData();
     default:
       return createKpiData();
   }
