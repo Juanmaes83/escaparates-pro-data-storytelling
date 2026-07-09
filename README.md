@@ -68,6 +68,30 @@ npm run preview
 - `DS_EXPORT_DONE`
 - `DS_ERROR`
 
+### Seguridad
+
+> **TODO:** `postMessage` usa `targetOrigin: '*'` durante el desarrollo. Restringir al dominio del parent en producción antes de desplegar.
+
+## Exportaciones soportadas
+
+- `png` — imagen PNG del canvas ECharts
+- `svg` — SVG nativo (cuando el renderer lo permite)
+- `html` — archivo HTML standalone con ECharts 6.1.0 desde CDN
+- `embed` — código iframe/script para incrustar
+- `json` — configuración completa del estado y la opción ECharts
+- `webm` — video WebM vía `MediaRecorder` (depende del soporte del navegador)
+
+## CI
+
+El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run build` en cada push y PR.
+
+## Pendientes
+
+- Code-splitting de ECharts para reducir bundle
+- Tests unitarios
+- Restricción de `targetOrigin` en producción
+- PNG sequence (no implementado)
+
 ## Licencia
 
 MIT

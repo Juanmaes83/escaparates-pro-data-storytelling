@@ -1,16 +1,26 @@
 import type { StateStore } from '../core/state';
-import type { IncomingMessage, OutgoingMessage, DataSet, Branding } from '../core/types';
+import type { IncomingMessage, OutgoingMessage, DataSet, Branding, ExportFormat } from '../core/types';
 import { templateRegistry, themeRegistry, presetRegistry } from '../core/registry';
 import { normalizeDataSet } from '../data/normalizeData';
 import { parseCSV } from '../data/csvParser';
+import { runExport, type ChartGetter } from '../export/exportManager';
+
+export interface ParentBridgeOptions {
+  getChart: ChartGetter;
+  baseUrl?: string;
+}
 
 export class ParentBridge {
   private store: StateStore;
   private target: Window;
+  private getChart: ChartGetter;
+  private baseUrl: string;
 
-  constructor(store: StateStore, target: Window = window.parent) {
+  constructor(store: StateStore, options: ParentBridgeOptions, target: Window = window.parent) {
     this.store = store;
     this.target = target;
+    this.getChart = options.getChart;
+    this.baseUrl = options.baseUrl || '';
   }
 
   start() {
@@ -52,7 +62,7 @@ export class ParentBridge {
           this.setOutputPreset(String(payload));
           break;
         case 'EP_DS_EXPORT':
-          this.emit({ type: 'DS_EXPORT_DONE', payload: { requestedFormat: payload } });
+          void this.handleExport(payload as ExportFormat | { format: ExportFormat; baseUrl?: string });
           break;
         default:
           this.emit({ type: 'DS_ERROR', payload: { message: `Unknown message type: ${type}` } });
@@ -70,6 +80,28 @@ export class ParentBridge {
     if (init.branding) this.setBranding(init.branding as Partial<Branding>);
     if (init.data) this.setData(init.data as DataSet | string);
     this.store.setReady(true);
+  }
+
+  private async handleExport(payload: ExportFormat | { format: ExportFormat; baseUrl?: string }) {
+    const format = typeof payload === 'string' ? payload : payload?.format;
+    const baseUrl = typeof payload === 'string' ? this.baseUrl : payload?.baseUrl ?? this.baseUrl;
+
+    if (!format) {
+      throw new Error('EP_DS_EXPORT requiere un formato.');
+    }
+
+    const result = await runExport(format, this.getChart, this.store.get(), baseUrl);
+    const summary: Record<string, unknown> = {
+      format: result.format,
+      filename: result.filename,
+      size: result.blob?.size,
+    };
+
+    if (result.content) {
+      summary.content = result.content;
+    }
+
+    this.emit({ type: 'DS_EXPORT_DONE', payload: summary });
   }
 
   private setTemplate(id: string) {
@@ -106,6 +138,7 @@ export class ParentBridge {
   }
 
   private emit(message: OutgoingMessage) {
+    // TODO: restrict targetOrigin in production.
     this.target.postMessage(message, '*');
   }
 }

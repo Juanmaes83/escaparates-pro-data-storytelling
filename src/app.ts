@@ -24,7 +24,7 @@ export function initApp() {
 
   const store = createState();
   const runtime = new Runtime(store);
-  const bridge = new ParentBridge(store);
+  const bridge = new ParentBridge(store, { getChart: () => runtime.getChartInstance() });
 
   const root = document.getElementById('app');
   if (!root) throw new Error('Missing #app container');
