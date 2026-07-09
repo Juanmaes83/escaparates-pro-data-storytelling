@@ -33,29 +33,47 @@ npm run build
 npm run preview
 ```
 
-## Templates incluidos (10)
+## Templates incluidos (15)
 
-### Business
+### Pack 01 — Fundamentos premium
+
+#### Business
 
 - Business Treemap Pro
 - KPI Dashboard Pro
 - Funnel Story Pro
 - Bubble Matrix Pro
 
-### Marketing
+#### Marketing
 
 - Brand Sunburst Pro
 - Timeline Campaign Pro
 - Heatmap Calendar Pro
 
-### Strategy
+#### Strategy
 
 - Decision Tree Pro
 - Radar Benchmark Pro
 
-### Experimental
+#### Experimental
 
 - Gauge Pack Pro
+
+### Pack 02 — Flujos, redes y narrativa avanzada
+
+#### Business
+
+- Sankey Flow Story Pro
+- Waterfall Profit Bridge Pro
+
+#### Strategy
+
+- Network Ecosystem Pro
+- Parallel Benchmark Pro
+
+#### Marketing
+
+- Theme River Trend Pro
 
 ## Themes
 
@@ -103,15 +121,16 @@ El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run build` en cad
 
 ## Roadmap / Próximos packs sugeridos
 
-- **Pack 02:** Geo map, network graph, sankey, candlestick, word cloud.
 - **Pack 03:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
+- **Pack 04:** Geo map, ECharts GL (futuro), gráficos 3D selectivos.
 - **Integración:** postMessage restringido, conector con `escaparates-pro`.
 
 ## Limitaciones
 
 - WebM depende del soporte nativo del navegador.
-- Bundle de ECharts completo (~1.1 MB). Code-splitting pendiente.
+- Bundle de ECharts completo (~1.15 MB). Code-splitting pendiente.
 - PNG sequence no implementado.
+- Algunos templates complejos (graph, sankey) pueden requerir ajustes de layout en resoluciones muy pequeñas.
 
 ## Licencia
 

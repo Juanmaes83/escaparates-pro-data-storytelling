@@ -23,6 +23,11 @@ import './templates/timelineCampaignPro';
 import './templates/radarBenchmarkPro';
 import './templates/bubbleMatrixPro';
 import './templates/heatmapCalendarPro';
+import './templates/sankeyFlowStoryPro';
+import './templates/networkEcosystemPro';
+import './templates/parallelBenchmarkPro';
+import './templates/waterfallProfitBridgePro';
+import './templates/themeRiverTrendPro';
 
 const WEBM_SUPPORTED =
   typeof HTMLCanvasElement !== 'undefined' &&
