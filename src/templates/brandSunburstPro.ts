@@ -1,6 +1,7 @@
 import type { EChartsOption } from 'echarts';
 import type { Template, TemplateContext } from '../core/types';
 import { templateRegistry } from '../core/registry';
+import { createSunburstData } from '../data/demoData';
 
 function buildOption(ctx: TemplateContext): EChartsOption {
   return {
@@ -22,9 +23,11 @@ export const brandSunburstPro: Template = {
   id: 'brand-sunburst-pro',
   name: 'Brand Sunburst Pro',
   description: 'Radiografía de marca en anillos jerárquicos.',
-  category: 'brand',
+  category: 'Marketing',
   buildOption,
   suggestedDimensions: ['name', 'value', 'children'],
+  defaultData: createSunburstData,
+  exportCapabilities: ['png', 'svg', 'html', 'embed', 'json'],
 };
 
 templateRegistry.register(brandSunburstPro);

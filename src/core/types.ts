@@ -46,13 +46,27 @@ export interface ThemeSpec {
   echartsTheme?: Record<string, unknown>;
 }
 
+export type TemplateCategory = 'Business' | 'Marketing' | 'Strategy' | 'Experimental' | 'decision' | 'business' | 'brand' | 'kpi' | 'gauge' | string;
+
+export type ExportCapability = 'png' | 'svg' | 'html' | 'embed' | 'json' | 'webm';
+
+export interface TemplateSettings {
+  showLegend?: boolean;
+  showToolbox?: boolean;
+  showTooltip?: boolean;
+  [key: string]: unknown;
+}
+
 export interface Template {
   id: string;
   name: string;
   description: string;
-  category: 'decision' | 'business' | 'brand' | 'kpi' | 'gauge' | string;
+  category: TemplateCategory;
   buildOption: (ctx: TemplateContext) => EChartsOption;
   suggestedDimensions: string[];
+  defaultData: () => DataSet;
+  defaultSettings?: TemplateSettings;
+  exportCapabilities?: ExportCapability[];
 }
 
 export interface TemplateContext {
@@ -78,6 +92,7 @@ export interface AppState {
   outputPresetId: string;
   lastError: string | null;
   isReady: boolean;
+  lastExport?: { format: ExportFormat; filename: string; at: string } | null;
 }
 
 export type IncomingMessageType =

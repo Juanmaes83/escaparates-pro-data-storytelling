@@ -113,6 +113,95 @@ export function createGaugeData(): DataSet {
   };
 }
 
+export function createFunnelStoryData(): DataSet {
+  return {
+    id: 'funnel-story-demo',
+    title: 'Funnel Story Pro',
+    rows: [
+      { name: 'Tráfico', value: 125000 },
+      { name: 'Leads', value: 42000 },
+      { name: 'Oportunidades', value: 12800 },
+      { name: 'Propuestas', value: 5400 },
+      { name: 'Ventas', value: 2180 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createTimelineCampaignData(): DataSet {
+  return {
+    id: 'timeline-campaign-demo',
+    title: 'Timeline Campaign Pro',
+    rows: [
+      { name: 'Lanzamiento', value: 12000, group: '2024-01-15' },
+      { name: 'Primer pico', value: 45000, group: '2024-02-01' },
+      { name: 'Ajuste creativo', value: 32000, group: '2024-02-14' },
+      { name: 'Segundo pico', value: 68000, group: '2024-03-01' },
+      { name: 'Retargeting', value: 51000, group: '2024-03-15' },
+      { name: 'Cierre', value: 39000, group: '2024-03-30' },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createRadarBenchmarkData(): DataSet {
+  return {
+    id: 'radar-benchmark-demo',
+    title: 'Radar Benchmark Pro',
+    rows: [
+      { name: 'Calidad', value: 85, group: 'Marca A' },
+      { name: 'Precio', value: 62, group: 'Marca A' },
+      { name: 'Diseño', value: 78, group: 'Marca A' },
+      { name: 'Servicio', value: 90, group: 'Marca A' },
+      { name: 'Innovación', value: 74, group: 'Marca A' },
+      { name: 'Sostenibilidad', value: 68, group: 'Marca A' },
+      { name: 'Calidad', value: 70, group: 'Competidor' },
+      { name: 'Precio', value: 88, group: 'Competidor' },
+      { name: 'Diseño', value: 65, group: 'Competidor' },
+      { name: 'Servicio', value: 72, group: 'Competidor' },
+      { name: 'Innovación', value: 60, group: 'Competidor' },
+      { name: 'Sostenibilidad', value: 55, group: 'Competidor' },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createBubbleMatrixData(): DataSet {
+  return {
+    id: 'bubble-matrix-demo',
+    title: 'Bubble Matrix Pro',
+    rows: [
+      { name: 'Expansión online', value: 85, group: '90', meta: { impacto: 90, esfuerzo: 20 } },
+      { name: 'App móvil', value: 72, group: '70', meta: { impacto: 70, esfuerzo: 65 } },
+      { name: 'Retail flagship', value: 64, group: '50', meta: { impacto: 50, esfuerzo: 80 } },
+      { name: 'Programa B2B', value: 91, group: '40', meta: { impacto: 40, esfuerzo: 35 } },
+      { name: 'Marketplace', value: 78, group: '85', meta: { impacto: 85, esfuerzo: 55 } },
+      { name: 'Loyalty program', value: 66, group: '60', meta: { impacto: 60, esfuerzo: 45 } },
+    ],
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createHeatmapCalendarData(): DataSet {
+  const rows: DataPoint[] = [];
+  const categories = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  categories.forEach((day) => {
+    for (let w = 0; w < 4; w++) {
+      rows.push({
+        name: `${day} S${w + 1}`,
+        value: Math.round(30 + Math.random() * 70),
+        group: day,
+      });
+    }
+  });
+  return {
+    id: 'heatmap-calendar-demo',
+    title: 'Heatmap Calendar Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'group', valueKey: 'value' },
+  };
+}
+
 export function createDemoDataSet(templateId: string): DataSet {
   switch (templateId) {
     case 'decision-tree-pro':
@@ -125,6 +214,16 @@ export function createDemoDataSet(templateId: string): DataSet {
       return createKpiData();
     case 'gauge-pack-pro':
       return createGaugeData();
+    case 'funnel-story-pro':
+      return createFunnelStoryData();
+    case 'timeline-campaign-pro':
+      return createTimelineCampaignData();
+    case 'radar-benchmark-pro':
+      return createRadarBenchmarkData();
+    case 'bubble-matrix-pro':
+      return createBubbleMatrixData();
+    case 'heatmap-calendar-pro':
+      return createHeatmapCalendarData();
     default:
       return createKpiData();
   }

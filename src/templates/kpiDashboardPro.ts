@@ -1,6 +1,7 @@
 import type { EChartsOption } from 'echarts';
 import type { Template, TemplateContext } from '../core/types';
 import { templateRegistry } from '../core/registry';
+import { createKpiData } from '../data/demoData';
 
 function buildOption(ctx: TemplateContext): EChartsOption {
   const rows = ctx.data.rows;
@@ -36,9 +37,11 @@ export const kpiDashboardPro: Template = {
   id: 'kpi-dashboard-pro',
   name: 'KPI Dashboard Pro',
   description: 'Panel comparativo de KPIs con barras profesionales.',
-  category: 'kpi',
+  category: 'Business',
   buildOption,
   suggestedDimensions: ['name', 'value'],
+  defaultData: createKpiData,
+  exportCapabilities: ['png', 'svg', 'html', 'embed', 'json'],
 };
 
 templateRegistry.register(kpiDashboardPro);
