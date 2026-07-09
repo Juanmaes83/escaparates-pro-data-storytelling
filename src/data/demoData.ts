@@ -471,6 +471,169 @@ export function createStrategicRoadmapData(): DataSet {
   };
 }
 
+export function createParetoAnalysisData(): DataSet {
+  return {
+    id: 'pareto-analysis-demo',
+    title: 'Pareto Analysis Pro',
+    rows: [
+      { name: 'Devoluciones', value: 420 },
+      { name: 'Logística', value: 310 },
+      { name: 'Atención', value: 180 },
+      { name: 'Packaging', value: 90 },
+      { name: 'Otros', value: 60 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createBulletKpiData(): DataSet {
+  return {
+    id: 'bullet-kpi-demo',
+    title: 'Bullet KPI Pro',
+    rows: [
+      { name: 'NPS', value: 72, meta: { target: 80 } },
+      { name: 'Margen', value: 24, meta: { target: 26 } },
+      { name: 'OEE', value: 68, meta: { target: 75 } },
+      { name: 'Calidad', value: 88, meta: { target: 92 } },
+      { name: 'On-time', value: 81, meta: { target: 90 } },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createBoxplotBenchmarkData(): DataSet {
+  return {
+    id: 'boxplot-benchmark-demo',
+    title: 'Boxplot Benchmark Pro',
+    rows: [
+      { name: 'Marca A', value: 0, meta: { box: [12, 28, 45, 62, 88] } },
+      { name: 'Marca B', value: 0, meta: { box: [18, 34, 50, 60, 72] } },
+      { name: 'Marca C', value: 0, meta: { box: [8, 22, 38, 48, 58] } },
+      { name: 'Marca D', value: 0, meta: { box: [25, 40, 55, 70, 92] } },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCandlestickMarketData(): DataSet {
+  return {
+    id: 'candlestick-market-demo',
+    title: 'Candlestick Market Pro',
+    rows: [
+      { name: 'Sem 1', value: 0, meta: { open: 100, close: 115, low: 95, high: 118, volume: 2400 } },
+      { name: 'Sem 2', value: 0, meta: { open: 115, close: 108, low: 102, high: 120, volume: 1800 } },
+      { name: 'Sem 3', value: 0, meta: { open: 108, close: 124, low: 105, high: 128, volume: 3200 } },
+      { name: 'Sem 4', value: 0, meta: { open: 124, close: 119, low: 112, high: 126, volume: 2100 } },
+      { name: 'Sem 5', value: 0, meta: { open: 119, close: 132, low: 116, high: 135, volume: 3600 } },
+      { name: 'Sem 6', value: 0, meta: { open: 132, close: 128, low: 120, high: 134, volume: 1900 } },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createNightingaleSegmentData(): DataSet {
+  return {
+    id: 'nightingale-segment-demo',
+    title: 'Nightingale Segment Pro',
+    rows: [
+      { name: 'Digital', value: 340 },
+      { name: 'Retail', value: 210 },
+      { name: 'B2B', value: 150 },
+      { name: 'Marketplace', value: 120 },
+      { name: 'D2C', value: 90 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createStackedAreaTrendData(): DataSet {
+  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'];
+  const series = ['Paid', 'Organic', 'Social', 'Email'];
+  const base: Record<string, number[]> = {
+    Paid: [40, 45, 50, 48, 55, 60],
+    Organic: [30, 32, 35, 38, 40, 42],
+    Social: [20, 25, 22, 28, 30, 35],
+    Email: [15, 18, 20, 22, 20, 25],
+  };
+  const rows = months.flatMap((m, idx) =>
+    series.map((s) => ({ name: m, value: base[s][idx], group: s }))
+  );
+  return {
+    id: 'stacked-area-trend-demo',
+    title: 'Stacked Area Trend Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createPictorialBarData(): DataSet {
+  return {
+    id: 'pictorial-bar-demo',
+    title: 'Pictorial Bar Pro',
+    rows: [
+      { name: 'Sostenibilidad', value: 78 },
+      { name: 'Innovación', value: 64 },
+      { name: 'Calidad', value: 92 },
+      { name: 'Servicio', value: 81 },
+      { name: 'Precio', value: 55 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createRadialDecisionTreeData(): DataSet {
+  const build = (name: string, value: number, children?: any[]): DataPoint => ({
+    name,
+    value,
+    children,
+  });
+  return {
+    id: 'radial-decision-tree-demo',
+    title: 'Radial Decision Tree Pro',
+    rows: [
+      build('Estrategia', 100, [
+        build('Crecimiento', 50, [build('Nuevos mercados', 20), build('Nuevos productos', 18), build('Partners', 12)]),
+        build('Eficiencia', 30, [build('Automatización', 15), build('Costes', 10), build('Calidad', 5)]),
+        build('Experiencia', 20, [build('CX', 12), build('Marca', 8)]),
+      ]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createStepForecastData(): DataSet {
+  return {
+    id: 'step-forecast-demo',
+    title: 'Step Forecast Pro',
+    rows: [
+      { name: 'Ene', value: 120 },
+      { name: 'Feb', value: 135 },
+      { name: 'Mar', value: 128 },
+      { name: 'Abr', value: 150 },
+      { name: 'May', value: 165 },
+      { name: 'Jun', value: 158, meta: { type: 'forecast' } },
+      { name: 'Jul', value: 172, meta: { type: 'forecast' } },
+      { name: 'Ago', value: 180, meta: { type: 'forecast' } },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createPolarBarData(): DataSet {
+  return {
+    id: 'polar-bar-demo',
+    title: 'Polar Bar Pro',
+    rows: [
+      { name: 'Norte', value: 74 },
+      { name: 'Sur', value: 58 },
+      { name: 'Este', value: 66 },
+      { name: 'Oeste', value: 82 },
+      { name: 'Centro', value: 70 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
 export function createDemoDataSet(templateId: string): DataSet {
   switch (templateId) {
     case 'decision-tree-pro':
@@ -523,6 +686,26 @@ export function createDemoDataSet(templateId: string): DataSet {
       return createScenarioComparisonData();
     case 'strategic-roadmap-pro':
       return createStrategicRoadmapData();
+    case 'pareto-analysis-pro':
+      return createParetoAnalysisData();
+    case 'bullet-kpi-pro':
+      return createBulletKpiData();
+    case 'boxplot-benchmark-pro':
+      return createBoxplotBenchmarkData();
+    case 'candlestick-market-pro':
+      return createCandlestickMarketData();
+    case 'nightingale-segment-pro':
+      return createNightingaleSegmentData();
+    case 'stacked-area-trend-pro':
+      return createStackedAreaTrendData();
+    case 'pictorial-bar-pro':
+      return createPictorialBarData();
+    case 'radial-decision-tree-pro':
+      return createRadialDecisionTreeData();
+    case 'step-forecast-pro':
+      return createStepForecastData();
+    case 'polar-bar-pro':
+      return createPolarBarData();
     default:
       return createKpiData();
   }

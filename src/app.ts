@@ -38,6 +38,16 @@ import './templates/productLifecyclePro';
 import './templates/cohortRetentionPro';
 import './templates/scenarioComparisonPro';
 import './templates/strategicRoadmapPro';
+import './templates/paretoAnalysisPro';
+import './templates/bulletKpiPro';
+import './templates/boxplotBenchmarkPro';
+import './templates/candlestickMarketPro';
+import './templates/nightingaleSegmentPro';
+import './templates/stackedAreaTrendPro';
+import './templates/pictorialBarPro';
+import './templates/radialDecisionTreePro';
+import './templates/stepForecastPro';
+import './templates/polarBarPro';
 
 const WEBM_SUPPORTED =
   typeof HTMLCanvasElement !== 'undefined' &&
