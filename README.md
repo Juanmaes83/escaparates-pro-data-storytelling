@@ -33,9 +33,9 @@ npm run build
 npm run preview
 ```
 
-## Templates incluidos (45)
+## Templates incluidos (55)
 
-El panel de templates organiza las 45 opciones en categorías colapsables para facilitar la navegación.
+El panel de templates organiza las 55 opciones en categorías colapsables para facilitar la navegación.
 
 ### Pack 01 — Fundamentos premium
 
@@ -143,6 +143,27 @@ El panel de templates organiza las 45 opciones en categorías colapsables para f
 - Custom Hexbin Pro
 - Custom Wind Pro
 
+### Pack 06 — Transiciones, geo, layouts especiales y avanzados
+
+#### Business
+
+- Custom Bar Trend Pro
+- Sankey Left Align Pro
+
+#### Strategy
+
+- Chord Style Pro
+- Circle Packing Pro
+- Flame Graph Pro
+
+#### Experimental
+
+- Morph Treemap Pro
+- Geo SVG Effect Pro
+- Pictorial Forest Pro
+- Custom Polar Heatmap Pro
+- Calendar Heatmap Pro
+
 ## Themes
 
 - Luxury Dark
@@ -189,16 +210,16 @@ El workflow `.github/workflows/ci.yml` ejecuta `npm ci` y `npm run build` en cad
 
 ## Roadmap / Próximos packs sugeridos
 
-- **Pack 06:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
-- **Pack 07:** Geo map (SVG/GeoJSON), ECharts GL (futuro), gráficos 3D selectivos.
+- **Pack 07:** Animaciones avanzadas, secuencias de export PNG, narración guiada.
+- **Pack 08:** Geo map real (SVG/GeoJSON), ECharts GL, gráficos 3D/globo.
 - **Integración:** postMessage restringido, conector con `escaparates-pro`.
 
 ## Limitaciones
 
 - WebM depende del soporte nativo del navegador.
-- Bundle de ECharts completo (~1.22 MB). Code-splitting pendiente.
+- Bundle de ECharts completo (~1.24 MB). Code-splitting pendiente.
 - PNG sequence no implementado.
-- Algunos templates complejos (graph, sankey, gantt, heatmap, boxplot, candlestick, tree radial, polar, hexbin, wind, calendario iconos) pueden requerir ajustes de layout en resoluciones muy pequeñas.
+- Algunos templates complejos (graph, sankey, gantt, heatmap, boxplot, candlestick, tree radial, polar, hexbin, wind, calendario iconos, chord, flame graph, polar heatmap) pueden requerir ajustes de layout en resoluciones muy pequeñas.
 
 ## Licencia
 

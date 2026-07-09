@@ -58,6 +58,16 @@ import './templates/customCalendarIconPro';
 import './templates/customHexbinPro';
 import './templates/treemapObamaPro';
 import './templates/customWindPro';
+import './templates/morphTreemapPro';
+import './templates/geoSvgEffectPro';
+import './templates/customBarTrendPro';
+import './templates/circlePackingPro';
+import './templates/sankeyLeftAlignPro';
+import './templates/pictorialForestPro';
+import './templates/chordStylePro';
+import './templates/customPolarHeatmapPro';
+import './templates/calendarHeatmapPro';
+import './templates/flameGraphPro';
 
 const WEBM_SUPPORTED =
   typeof HTMLCanvasElement !== 'undefined' &&

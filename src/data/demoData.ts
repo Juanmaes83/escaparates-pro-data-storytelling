@@ -834,6 +834,207 @@ export function createCustomWindData(): DataSet {
   };
 }
 
+export function createMorphTreemapData(): DataSet {
+  const build = (name: string, value: number, children?: DataPoint[]): DataPoint => ({
+    name,
+    value,
+    children,
+  });
+  return {
+    id: 'morph-treemap-demo',
+    title: 'Morph Treemap Pro',
+    rows: [
+      build('Producto', 1000, [
+        build('Frontend', 400, [build('Web', 250), build('Móvil', 150)]),
+        build('Backend', 350, [build('API', 200), build('DB', 150)]),
+        build('UX', 250, [build('Research', 150), build('Diseño', 100)]),
+      ]),
+      build('Marketing', 700, [
+        build('Paid', 300),
+        build('Organic', 250),
+        build('Email', 150),
+      ]),
+      build('Operaciones', 500, [build('Logística', 300), build('Soporte', 200)]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createGeoSvgEffectData(): DataSet {
+  return {
+    id: 'geo-svg-effect-demo',
+    title: 'Geo SVG Effect Pro',
+    rows: [
+      { name: 'A', value: 100, meta: { x: 60, y: 60 } },
+      { name: 'B', value: 60, meta: { x: 120, y: 80 } },
+      { name: 'C', value: 80, meta: { x: 90, y: 130 } },
+      { name: 'D', value: 40, meta: { x: 150, y: 140 } },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCustomBarTrendData(): DataSet {
+  const categories = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const years = ['2021', '2022', '2023'];
+  const rows: DataPoint[] = [];
+  categories.forEach((cat) => {
+    let val = 200 + Math.random() * 600;
+    years.forEach((year) => {
+      val = Math.max(50, val + (Math.random() - 0.4) * 200);
+      rows.push({ name: cat, value: Math.round(val), group: year });
+    });
+  });
+  return {
+    id: 'custom-bar-trend-demo',
+    title: 'Custom Bar Trend Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value', seriesKey: 'group' },
+  };
+}
+
+export function createCirclePackingData(): DataSet {
+  const build = (name: string, value: number, children?: DataPoint[]): DataPoint => ({
+    name,
+    value,
+    children,
+  });
+  return {
+    id: 'circle-packing-demo',
+    title: 'Circle Packing Pro',
+    rows: [
+      build('Empresa', 1000, [
+        build('Digital', 400, [build('Web', 150), build('App', 120), build('Ecommerce', 130)]),
+        build('Retail', 300, [build('Tiendas', 180), build('Franquicias', 120)]),
+        build('B2B', 200, [build('Partners', 120), build('Mayoristas', 80)]),
+        build('Nuevos', 100),
+      ]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createSankeyLeftAlignData(): DataSet {
+  const nodes = ['Orgánico', 'Paid', 'Social', 'Visitantes', 'Leads', 'Clientes'];
+  const rows: DataPoint[] = nodes.map((name) => ({ name, value: 0, group: 'node' }));
+  rows.push(
+    { name: 'l1', value: 250, group: 'link', meta: { source: 'Orgánico', target: 'Visitantes' } },
+    { name: 'l2', value: 180, group: 'link', meta: { source: 'Paid', target: 'Visitantes' } },
+    { name: 'l3', value: 120, group: 'link', meta: { source: 'Social', target: 'Visitantes' } },
+    { name: 'l4', value: 350, group: 'link', meta: { source: 'Visitantes', target: 'Leads' } },
+    { name: 'l5', value: 140, group: 'link', meta: { source: 'Leads', target: 'Clientes' } }
+  );
+  return {
+    id: 'sankey-left-align-demo',
+    title: 'Sankey Left Align Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createPictorialForestData(): DataSet {
+  return {
+    id: 'pictorial-forest-demo',
+    title: 'Pictorial Forest Pro',
+    rows: [
+      { name: '2019', value: 120 },
+      { name: '2020', value: 180 },
+      { name: '2021', value: 260 },
+      { name: '2022', value: 340 },
+      { name: '2023', value: 420 },
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createChordStyleData(): DataSet {
+  const nodes = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  const rows: DataPoint[] = nodes.map((name) => ({ name, value: 0, group: 'node' }));
+  rows.push(
+    { name: 'l1', value: 14, group: 'link', meta: { source: 'A', target: 'B' } },
+    { name: 'l2', value: 8, group: 'link', meta: { source: 'A', target: 'C' } },
+    { name: 'l3', value: 20, group: 'link', meta: { source: 'B', target: 'C' } },
+    { name: 'l4', value: 15, group: 'link', meta: { source: 'B', target: 'E' } },
+    { name: 'l5', value: 12, group: 'link', meta: { source: 'D', target: 'A' } },
+    { name: 'l6', value: 15, group: 'link', meta: { source: 'E', target: 'A' } },
+    { name: 'l7', value: 6, group: 'link', meta: { source: 'G', target: 'A' } }
+  );
+  return {
+    id: 'chord-style-demo',
+    title: 'Chord Style Pro',
+    rows,
+    schema: { dimensions: ['name', 'value', 'group'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCustomPolarHeatmapData(): DataSet {
+  const hours = Array.from({ length: 12 }, (_, i) => i);
+  const days = [0, 1, 2, 3, 4, 5, 6];
+  const rows: DataPoint[] = [];
+  days.forEach((day) => {
+    hours.forEach((hour) => {
+      rows.push({
+        name: `${day}-${hour}`,
+        value: Math.floor(Math.random() * 100),
+        meta: { day, hour },
+      });
+    });
+  });
+  return {
+    id: 'custom-polar-heatmap-demo',
+    title: 'Custom Polar Heatmap Pro',
+    rows,
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createCalendarHeatmapData(): DataSet {
+  const rows: DataPoint[] = [];
+  const start = new Date('2016-01-01').getTime();
+  const day = 24 * 60 * 60 * 1000;
+  for (let i = 0; i < 365; i++) {
+    const date = new Date(start + i * day);
+    rows.push({
+      name: date.toISOString().slice(0, 10),
+      value: Math.floor(Math.random() * 10000),
+      meta: { year: '2016' },
+    });
+  }
+  return {
+    id: 'calendar-heatmap-demo',
+    title: 'Calendar Heatmap Pro',
+    rows,
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
+export function createFlameGraphData(): DataSet {
+  const build = (name: string, value: number, children?: DataPoint[]): DataPoint => ({
+    name,
+    value,
+    children,
+  });
+  return {
+    id: 'flame-graph-demo',
+    title: 'Flame Graph Pro',
+    rows: [
+      build('Total', 1000, [
+        build('App', 600, [
+          build('Render', 250, [build('Components', 120), build('Styles', 80), build('Layout', 50)]),
+          build('Logic', 200, [build('State', 120), build('Events', 80)]),
+          build('Network', 150, [build('Fetch', 90), build('Cache', 60)]),
+        ]),
+        build('DB', 300, [
+          build('Queries', 180, [build('Reads', 100), build('Writes', 80)]),
+          build('Index', 120),
+        ]),
+        build('Infra', 100, [build('Logs', 60), build('Metrics', 40)]),
+      ]),
+    ],
+    schema: { dimensions: ['name', 'value'], categoryKey: 'name', valueKey: 'value' },
+  };
+}
+
 export function createDemoDataSet(templateId: string): DataSet {
   switch (templateId) {
     case 'decision-tree-pro':
@@ -926,6 +1127,26 @@ export function createDemoDataSet(templateId: string): DataSet {
       return createTreemapObamaData();
     case 'custom-wind-pro':
       return createCustomWindData();
+    case 'morph-treemap-pro':
+      return createMorphTreemapData();
+    case 'geo-svg-effect-pro':
+      return createGeoSvgEffectData();
+    case 'custom-bar-trend-pro':
+      return createCustomBarTrendData();
+    case 'circle-packing-pro':
+      return createCirclePackingData();
+    case 'sankey-left-align-pro':
+      return createSankeyLeftAlignData();
+    case 'pictorial-forest-pro':
+      return createPictorialForestData();
+    case 'chord-style-pro':
+      return createChordStyleData();
+    case 'custom-polar-heatmap-pro':
+      return createCustomPolarHeatmapData();
+    case 'calendar-heatmap-pro':
+      return createCalendarHeatmapData();
+    case 'flame-graph-pro':
+      return createFlameGraphData();
     default:
       return createKpiData();
   }
