@@ -9,6 +9,7 @@ export class Runtime {
   chart: ECharts | null = null;
   private store: StateStore;
   private unsubscribe: (() => void) | null = null;
+  private isRendering = false;
 
   constructor(store: StateStore) {
     this.store = store;
@@ -32,7 +33,8 @@ export class Runtime {
   }
 
   render() {
-    if (!this.chart) return;
+    if (!this.chart || this.isRendering) return;
+    this.isRendering = true;
     const state = this.store.get();
 
     const template = state.templateId ? templateRegistry.get(state.templateId) : null;
@@ -81,6 +83,8 @@ export class Runtime {
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       this.store.setError(message);
+    } finally {
+      this.isRendering = false;
     }
   }
 
